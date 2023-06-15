@@ -269,8 +269,9 @@ class MigrationYaml(GraphMigrator):
 
     def pr_body(self, feedstock_ctx: "FeedstockContext") -> str:
         body = super().pr_body(feedstock_ctx)
+        additional_body = ""
         if feedstock_ctx.package_name == "conda-forge-pinning":
-            additional_body = (
+            additional_body += (
                 "This PR has been triggered in an effort to close out the "
                 "migration for **{name}**.\n\n"
                 "Notes and instructions for merging this PR:\n"
@@ -286,7 +287,7 @@ class MigrationYaml(GraphMigrator):
                 )
             )
         else:
-            additional_body = (
+            additional_body += (
                 "This PR has been triggered in an effort to update **{name}**.\n\n"
                 "Notes and instructions for merging this PR:\n"
                 "1. Please merge the PR only after the tests have passed. \n"
